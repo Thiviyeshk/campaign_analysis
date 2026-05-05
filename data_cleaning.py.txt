@@ -1,0 +1,193 @@
+import pandas as pd
+
+df = pd.read_csv("predict.csv")
+df.head()
+df.info()
+df.isnull().sum()
+df.drop_duplicates(inplace=True)
+df['group'].value_counts()
+df.columns
+df['Group'].value_counts()
+df.columns = df.columns.str.strip()
+df['group'].value_counts()
+print(df.columns)
+df['Conversion'].value_counts()
+df['Conversion'].value_counts()
+df['Conversion'].mean()
+df.groupby('CampaignType')['Conversion'].mean()
+df.groupby('AdvertisingPlatform')['Conversion'].mean()
+df.groupby('Gender')['Conversion'].mean()
+df.groupby('CampaignChannel')['Conversion'].mean()
+df.groupby('AdvertisingPlatform')['Conversion'].mean().sort_values(ascending=False)
+df['group'].value_counts()
+print(df.columns)
+df.groupby('AdvertisingPlatform')['Conversion'].mean().sort_values(ascending=False)
+df['group'].value_counts()
+
+df['CampaignType'].value_counts()
+
+df['AdvertisingPlatform'].value_counts()
+
+df['Gender'].value_counts()
+
+df['Conversion'].value_counts()
+
+df.groupby('CampaignType')['Conversion'].mean()
+
+df.groupby('AdvertisingPlatform')['Conversion'].mean()
+
+df['landing_page'].value_counts()
+
+df['converted'].value_counts()
+
+df['CampaignChannel'].value_counts()
+
+df['CampaignType'].value_counts()
+
+df['AdvertisingPlatform'].value_counts()
+
+df['Conversion'].value_counts()
+
+conversion_rate = df.groupby('landing_page')['converted'].mean()
+print(conversion_rate)
+
+channel_conversion = df.groupby('CampaignChannel')['Conversion'].mean()
+print(channel_conversion)
+
+
+
+type_conversion = df.groupby('CampaignType')['Conversion'].mean()
+print(type_conversion)
+
+platform_conversion = df.groupby('AdvertisingPlatform')['Conversion'].mean()
+print(platform_conversion)
+
+platform_conversion = df.groupby('AdvertisingPlatform')['Conversion'].mean().sort_values(ascending=False)
+print(platform_conversion)
+
+
+
+df.columns
+
+df.columns = df.columns.str.strip()
+
+df.columns
+
+df.head()
+
+conversion_rate = df.groupby('group')['converted'].mean()
+print(conversion_rate)
+
+df['conversion_rate'] = df['approved_conversion'] / df['clicks']
+df[['clicks','approved_conversion','conversion_rate']].head()
+
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+df = pd.read_csv("predict.csv")
+df.head()
+
+df.columns
+df.info()
+df.describe()
+
+df.isnull().sum()
+
+df = df.dropna()
+
+
+
+df.duplicated().sum()
+
+df['CampaignChannel'].value_counts()
+
+ab_data = df[df['CampaignChannel'].isin(['Email','Social'])]
+
+conversion_rate = ab_data.groupby('CampaignChannel')['Conversion'].mean()
+print(conversion_rate)conversion_rate = ab_data.groupby('CampaignChannel')['Conversion'].mean()
+print(conversion_rate)
+
+sns.barplot(x='CampaignChannel', y='Conversion', data=ab_data)
+
+plt.title("Conversion Rate by Campaign Channel")
+plt.show()
+
+from statsmodels.stats.proportion import proportions_ztest
+
+email = ab_data[ab_data['CampaignChannel']=='Email']['Conversion']
+social = ab_data[ab_data['CampaignChannel']=='Social']['Conversion']
+
+success = [email.sum(), social.sum()]
+total = [email.count(), social.count()]
+
+z_stat, p_value = proportions_ztest(success, total)
+
+print("Z-statistic:", z_stat)
+print("P-value:", p_value)
+
+ab_data['CampaignChannel'].value_counts()
+
+df['CampaignType'].value_counts()
+
+ab_data = df[df['CampaignType'].isin(['Search','Display'])]
+
+ab_data = df[df['CampaignType'].isin(['Conversion','Awareness'])]
+
+ab_data.groupby('CampaignType')['Conversion'].mean()
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.barplot(x='CampaignType', y='Conversion', data=ab_data)
+
+plt.title("Conversion Rate by Campaign Type")
+plt.show()
+
+from statsmodels.stats.proportion import proportions_ztest
+
+groupA = ab_data[ab_data['CampaignType']=='Conversion']['Conversion']
+groupB = ab_data[ab_data['CampaignType']=='Awareness']['Conversion']
+
+success = [groupA.sum(), groupB.sum()]
+total = [groupA.count(), groupB.count()]
+
+z_stat, p_value = proportions_ztest(success, total)
+
+print("Z-statistic:", z_stat)
+print("P-value:", p_value)
+
+result = ab_data.groupby('CampaignType')['Conversion'].agg(['count','sum','mean'])
+print(result)
+
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+sns.barplot(x='CampaignType', y='Conversion', data=ab_data)
+
+plt.title("A/B Test: Conversion Rate by Campaign Type")
+plt.show()
+
+sns.countplot(x='CampaignType', data=ab_data)
+
+plt.title("User Distribution Across Campaign Types")
+plt.show()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
