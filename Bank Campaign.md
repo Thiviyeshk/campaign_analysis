@@ -191,6 +191,17 @@ The dataset contains customer and campaign information such as:
 \* Helps banks optimize call strategies and customer engagement
 
 
+## 📸 Dashboard Preview
+
+![Marketing Campaign Dashboard](market_campaign.png)
+
+---
+
+## 🎥 Demo Video
+
+[Watch Demo](market_campaign.mp4)
+
+
 
 ###### **How to Run**
 
