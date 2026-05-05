@@ -168,13 +168,7 @@ The dataset contains customer and campaign information such as:
 
 \* Timing of campaigns affects success
 
-###### 
 
-###### **Dashboard Preview**
-
-
-
-(Add your screenshot here)
 
 
 
